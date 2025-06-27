@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QII_FOLL_STORE - Jasa Followers Aman & Murah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #a1b3d1;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #002f6c, #3b82f6);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #1d4ed8;
+    }
+
+    .prices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .price-card {
+      background: #4b5d7e;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .price-card h3 {
+      margin-bottom: 10px;
+      color: #ffffff;
+      text-align: center;
+    }
+    #scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 999;
+}
+#scrollTopBtn:hover {
+  background-color: #2563eb;
+}
+
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+      color: #ffffff;
+    }
+    .price-card ul li::before {
+      content: "✔ ";
+      color: #22c55e;
+    }
+    .price-card button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100%;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .price-card button:hover {
+      background: #2563eb;
+    }
+
+   .slider-container {
+  position: relative;
+  width: 250px; /* Sedikit lebih besar dari gambar 250px */
+  height: 470px; /* Sesuaikan tinggi gambar asli */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 2px; /* Jangan terlalu besar kayak 100px */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+   }
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 250px 250; /* ✅ Tambahkan ruang atas dan bawah */
+}
+
+.slide img {
+  width: 250px;            /* Ukuran kecil sesuai keinginan */
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Tombol panah di kiri dan kanan gambar, tidak terlalu jauh */
+.slider-buttons {
+  position: absolute;
+  top: 50%;
+  width: 250px; /* Lebar mengikuti gambar */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none; /* Agar tidak menghalangi elemen lain */
+}
+
+.slider-buttons button {
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  padding: 4px 6px;         /* Lebih kecil */
+  font-size: 1rem;          /* Sedikit lebih kecil */
+  cursor: pointer;
+  border-radius: 8px;       /* Sudut tidak terlalu bulat */
+  pointer-events: auto;
+  transition: background 0.3s;
+}
+
+.slider-buttons button:hover {
+  background: rgba(0,0,0,0.6);
+}
+.floating-testimoni {
+  position: fixed;
+  bottom: 40px; /* Semakin kecil, makin ke bawah */
+  left: 20px;
+  background-color: #cde3e6;
+  color: #1f2937;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.85rem; /* Lebih kecil */
+  max-width: 220px; /* Lebih sempit */
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.floating-testimoni.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.faq-section {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 40px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  font-weight: 600;
+  color: #1e3a8a;
+  position: relative;
+  padding-right: 20px;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question::after {
+  content: '-';
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px; /* Sesuaikan tinggi maksimal jawaban */
+}
+
+    footer {
+      background: #1e3a8a;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">QII_FOLL_STORE</div>
+    <h1>Layanan Followers Aman, Cepat & Terpercaya</h1>
+    <p>Instagram • TikTok • Shopee</p>
+  </header>
+  <section class="section">
+    <h2 class="section-title"> Daftar Layanan & Harga</h2>
+    <div class="prices">
+
+      <div class="price-card">
+        <h3>Instagram Followers Indo Aktif</h3>
+        <ul>
+          <li>100 followers - Rp 10K</li>
+          <li>200 followers - Rp 15K</li>
+          <li>300 followers - Rp 20K</li>
+          <li>400 followers - Rp 25K</li>
+          <li>500 followers - Rp 29K</li>
+          <li>600 followers - Rp 30K</li>
+          <li>700 followers - Rp 33K</li>
+          <li>800 followers - Rp 35K</li>
+          <li>900 followers - Rp 40K</li>
+          <li>1000 followers - Rp 42K</li>
+          <li>2000 followers - Rp 60K</li>
+          <li>3000 followers - Rp 100K</li>
+          <li>5000 followers - Rp 140K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+
+      <div class="price-card">
+        <h3>Instagram Followers Dunia</h3>
+        <ul>
+          <li>100 followers - Rp 3K</li>
+          <li>200 followers - Rp 6K</li>
+          <li>300 followers - Rp 9K</li>
+          <li>400 followers - Rp 12K</li>
+          <li>500 followers - Rp 15K</li>
+          <li>600 followers - Rp 18K</li>
+          <li>700 followers - Rp 21K</li>
+          <li>800 followers - Rp 24K</li>
+          <li>900 followers - Rp 27K</li>
+          <li>1000 followers - Rp 30K</li>
+          <li>2000 followers - Rp 58K</li>
+          <li>3000 followers - Rp 80K</li>
+          <li>4000 followers - Rp 100K</li>
+          <li>5000 followers - Rp 120K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+     <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+ <div class="price-card">
+        <h3>Instagram Views</h3>
+        <ul>
+          <li>1000 views - Rp 5K</li>
+          <li>2000 views - Rp 8K</li>
+          <li>5000 views - Rp 11K</li>
+          <li>10000 views - Rp 20K</li>
+          <li>20000 views - Rp 40K</li>
+          <li>50000 views - Rp 65K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+<div class="price-card">
+        <h3>Like Instagram Dunia</h3>
+        <ul>
+          <li>300 like - Rp 10K</li>
+          <li>500 like - Rp 15K</li>
+          <li>1000 like - Rp 25K</li>
+          <li>3000 like - Rp 55K</li>
+          <li>5000 like - Rp 95K</li>
+           <li>10000 like - Rp 155K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+      <div class="price-card">
+        <h3>Like Instagram Indo Aktif</h3>
+        <ul>
+          <li>100 like - Rp 13K</li>
+           <li>200 like - Rp 15K</li>
+            <li>300 like - Rp 17K</li>
+             <li>400 like - Rp 19K</li>
+              <li>500 like - Rp 20K</li>
+               <li>600 like - Rp 25K</li>
+                <li>700 like - Rp 31K</li>
+                 <li>800 like - Rp 33K</li>
+                  <li>900 like - Rp 34K</li>
+                   <li>100 like - Rp 35K</li>
+        
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+     <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+<div class="price-card">
+        <h3>TikTok Followers</h3>
+        <ul>
+          <li>200 followers - Rp 20K</li>
+          <li>500 followers - Rp 35K</li>
+          <li>1000 followers - Rp 60K</li>
+          <li>2000 followers - Rp 110K</li>
+          <li>5000 followers - Rp 235K</li>
+        </ul>
+</div>
+      <div class="price-card">
+        <h3>TikTok Likes</h3>
+        <ul>
+          <li>100 likes - Rp 10K</li>
+          <li>500 likes - Rp 20K</li>
+          <li>1000 likes - Rp 30K</li>
+          <li>5000 likes - Rp 110K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+<div class="price-card">
+        <h3>TikTok Views</h3>
+        <ul>
+          <li>500 views - Rp 10K</li>
+          <li>1000 views - Rp 15K</li>
+          <li>2000 views - Rp 20K</li>
+          <li>5000 views - Rp 30K</li>
+          <li>100.000 views - Rp 110K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+      <div class="price-card">
+        <h3>Shopee Followers</h3>
+        <ul>
+          <li>500 followers - Rp 35K</li>
+          <li>600 followers - Rp 40K</li>
+          <li>700 followers - Rp 45K</li>
+          <li>800 followers - Rp 50K</li>
+          <li>800 followers - Rp 55K</li>
+          <li>1000 followers - Rp 60K</li>
+        </ul>
+        <button onclick="window.location.href='https://api.whatsapp.com/send?phone=6289507982548'">Pesan Sekarang</button>
+      <p style="font-size: 0.9rem; color: #d1d5db; margin-top: 8px;">✅ Tanpa password • 🔒 100% Aman • 💯 Terpercaya</p>
+
+      </div>
+</div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Kenapa Beli Followers di QII_FOLL_STORE?</h2>
+    <ul style="line-height: 1.8; background: #e0ecff; padding: 20px; border-radius: 12px; max-width: 800px; margin: auto; color: #1e3a8a;">
+      <li>✔ Meningkatkan kredibilitas akun secara instan</li>
+      <li>✔ Membuka peluang kerjasama dengan brand</li>
+      <li>✔ Meningkatkan kepercayaan dari calon pembeli/followers</li>
+      <li>✔ Proses cepat, tanpa password</li>
+      <li>✔ Support WA responsif</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">📝 Catatan Penting</h2>
+    <ul style="line-height: 1.8; background: #e0ecff; padding: 20px; border-radius: 12px; max-width: 800px; margin: auto; color: #92400e;">
+      <li>⚠ Hanya perlu username atau link postingan</li>
+      <li>⚠ Jangan private akun selama proses berjalan</li>
+      <li>⚠ Ada promo/tawaran khusus tiap pembelian</li>
+      <li>⚠ 100% aman dan terbukti</li>
+      <li>💳 Pembayaran via BCA & DANA</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">📸 Testimoni Pelanggan</h2>
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slide"><img src="testimoni1.jpg" alt="Testimoni 1"></div>
+        <div class="slide"><img src="testimoni2.jpg" alt="Testimoni 2"></div>
+        <div class="slide"><img src="testimoni3.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="testimoni4.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="testimoni5.jpg" alt="Testimoni 3"></div>
+      </div>
+      <div class="slider-buttons">
+        <button onclick="prevSlide()">‹</button>
+        <button onclick="nextSlide()">›</button>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="text-align: center;">
+  <h2 class="section-title">⭐ Rating Pengguna</h2>
+  <p style="font-size: 1.2rem; color: #1e3a8a;">4.9 dari 5 bintang (108+ review)</p>
+  <p style="font-size: 2rem; color: gold;">★★★★★</p>
+</section>
+
+<section class="section">
+  <h2 class="section-title">❓ Pertanyaan yang Sering Diajukan</h2>
+  <div class="faq-section">
+    <div class="faq-item">
+      <div class="faq-question">Apakah aman membeli followers?</div>
+      <div class="faq-answer">Ya, layanan kami 100% aman. Tidak memerlukan password dan sudah terbukti digunakan oleh ribuan pengguna.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Kapan followers masuk setelah bayar?</div>
+      <div class="faq-answer">Rata-rata followers masuk dalam 15–60 menit setelah pembayaran dikonfirmasi.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Kalau akun di-private bagaimana?</div>
+      <div class="faq-answer">Akun harus dalam keadaan publik saat proses pengisian followers berlangsung agar sistem dapat bekerja.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Bisa bayar lewat apa saja?</div>
+      <div class="faq-answer">Kami menerima pembayaran melalui DANA, BCA, dan beberapa e-wallet lainnya. Cukup chat kami di WhatsApp.</div>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    &copy; 2025 QII_FOLL_STORE • IG: @qii_foll_store
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const totalSlides = slider.children.length;
+
+    function showSlide(index) {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    setInterval(nextSlide, 4000);
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.onscroll = function () {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// FAQ Accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+
+  </script>
+<button onclick="scrollToTop()" id="scrollTopBtn" title="Kembali ke atas">↑</button>
+<div id="floatingTestimoni" class="floating-testimoni"></div>
+<script>
+  const testimoniList = [
+    "⭐ \"Followers langsung naik 1000 dalam 60 menit!\" – @rani_shop",
+    "⭐ \"Nggak nyangka semurah ini bisa dapet banyak banget.\" – @jualanku.id",
+    "⭐ \"Fast respon, prosesnya cepat, aman banget!\" – @kuyfollower",
+    "⭐ \"Udah 3x order, selalu puas sama hasilnya.\" – @tokoonlinecepat",
+    "⭐ \"Likes dan views nambah semua, mantap!\" – @dailyfashion"
+  ];
+
+  const floatingBox = document.getElementById("floatingTestimoni");
+  let testiIndex = 0;
+
+  function showTestimoni() {
+    floatingBox.classList.remove("show"); // hilangkan dulu
+    setTimeout(() => {
+      floatingBox.textContent = testimoniList[testiIndex];
+      floatingBox.classList.add("show");
+      testiIndex = (testiIndex + 1) % testimoniList.length;
+    }, 500);
+  }
+
+  setInterval(showTestimoni, 5000); // ganti testimoni tiap 5 detik
+  window.onload = showTestimoni;
+</script>
+
+</body>
+</html>
