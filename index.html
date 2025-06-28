@@ -433,10 +433,48 @@
       </div>
     </div>
   </section>
+ 
   <section class="section" style="text-align: center;">
   <h2 class="section-title">⭐ Rating Pengguna</h2>
   <p style="font-size: 1.2rem; color: #1e3a8a;">4.9 dari 5 bintang (108+ review)</p>
   <p style="font-size: 2rem; color: gold;">★★★★★</p>
+</section>
+<section>
+    <h2 class="section-title"> Bukti Pembayaran</h2> 
+    <h2 class="section-title" > <small style="color: #000000;">Small Order</small></h2>
+    <div class="slider-container">
+      <div class="slider" id="slider1">
+        <div class="slide"><img src="m1.jpg" alt="Testimoni 1"></div>
+        <div class="slide"><img src="m2.jpg" alt="Testimoni 2"></div>
+        <div class="slide"><img src="m4.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="m5.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="m6.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="m7.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="m8.jpg" alt="Testimoni 3"></div>
+        <div class="slide"><img src="m9.jpg" alt="Testimoni 3"></div>
+      </div>
+       <div class="slider-buttons">
+      <div class="slider-buttons">
+  <button onclick="prevSlide1()">‹</button>
+  <button onclick="nextSlide1()">›</button>
+</div>
+  </section>
+  <section class="section">
+  <h2 class="section-title"> <small style="color: white;">📦 Big Order</small></h2> 
+  <div class="slider-container">
+    <div class="slider" id="slider2">
+      <div class="slide"><img src="b1.jpg" alt="Big Order 1"></div>
+      <div class="slide"><img src="b2.jpg" alt="Big Order 2"></div>
+      <div class="slide"><img src="b3.jpg" alt="Big Order 3"></div>
+      <div class="slide"><img src="b4.jpg" alt="Big Order 4"></div>
+      <div class="slide"><img src="b5.jpg" alt="Big Order 5"></div>
+      <div class="slide"><img src="b6.jpg" alt="Big Order 6"></div>
+    </div>
+    <div class="slider-buttons">
+      <button onclick="prevSlide2()">‹</button>
+      <button onclick="nextSlide2()">›</button>
+    </div>
+  </div>
 </section>
 
 <section class="section">
@@ -484,7 +522,8 @@
       showSlide(currentIndex);
     }
 
-    setInterval(nextSlide, 4000);
+    setInterval(nextSlide, 3500);
+
     const scrollBtn = document.getElementById("scrollTopBtn");
 
 window.onscroll = function () {
@@ -531,6 +570,54 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
   setInterval(showTestimoni, 5000); // ganti testimoni tiap 5 detik
   window.onload = showTestimoni;
+</script>
+<script>
+  
+  // Slider 2: Bukti Pembayaran
+  let currentSlide1 = 0;
+  const slides1 = document.querySelectorAll("#slider1 .slide");
+
+  function showSlide1(index) {
+    const totalSlides1 = slides1.length;
+    if (index >= totalSlides1) currentSlide1 = 0;
+    else if (index < 0) currentSlide1 = totalSlides1 - 1;
+    else currentSlide1 = index;
+
+    const offset = -currentSlide1 * 100;
+    document.getElementById("slider1").style.transform = `translateX(${offset}%)`;
+  }
+
+  function nextSlide1() {
+    showSlide1(currentSlide1 + 1);
+  }
+
+  function prevSlide1() {
+    showSlide1(currentSlide1 - 1);
+  }
+  
+    setInterval(nextSlide1, 2800);
+</script>
+<script>
+  // --- Slider Big Order ---
+  let currentSlide2 = 0;
+  const slides2 = document.querySelectorAll("#slider2 .slide");
+
+  function showSlide2(index) {
+    const totalSlides2 = slides2.length;
+    currentSlide2 = (index + totalSlides2) % totalSlides2;
+    document.getElementById("slider2").style.transform = `translateX(${-currentSlide2 * 100}%)`;
+  }
+
+  function nextSlide2() {
+    showSlide2(currentSlide2 + 1);
+  }
+
+  function prevSlide2() {
+    showSlide2(currentSlide2 - 1);
+  }
+
+  // Auto Slide untuk Big Order
+  setInterval(nextSlide2, 3000); // ganti setiap 5 detik
 </script>
 
 </body>
